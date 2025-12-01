@@ -1,0 +1,34 @@
+<h1>Leaderboard</h1>
+<%= link_to 'Players', players_path %> |
+<%= link_to 'Matches', matches_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Win %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @players.each_with_index do |p, idx| %>
+      <tr>
+        <td><%= idx + 1 %></td>
+        <td><%= p.name %></td>
+
+        <% wins = p.wins.count %>
+        <% losses = p.losses.count %>
+        <td><%= wins %></td>
+        <td><%= losses %></td>
+
+        <td>
+          <% total = wins + losses %>
+          <%= total > 0 ? ((wins.to_f / total) * 100).round(1) : 'N/A' %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

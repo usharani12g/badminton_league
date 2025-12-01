@@ -1,0 +1,29 @@
+<h1>Matches</h1>
+<%= link_to 'Record Match', new_match_path %> |
+<%= link_to 'Players', players_path %> |
+<%= link_to 'Leaderboard', leaderboard_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Played At</th>
+      <th>Player A</th>
+      <th>Player B</th>
+      <th>Winner</th>
+      <th>Score</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches.each do |m| %>
+      <tr>
+        <td><%= m.played_at.in_time_zone.strftime("%d-%m-%Y %I:%M %p") %></td>
+        <td><%= m.player_a ? m.player_a.name : "" %></td>
+        <td><%= m.player_b ? m.player_b.name : "" %></td>
+        <td><%= m.winner ? m.winner.name : "" %></td>
+        <td><%= m.score %></td>
+        <td><%= button_to 'Delete', match_path(m), method: :delete, data: { confirm: 'Delete match?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

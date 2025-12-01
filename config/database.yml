@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+development:
+  <<: *default
+  database: badminton_league
+  username: postgres
+  password: postgres
+
+test:
+  <<: *default
+  database: badminton_league_test
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: badminton_league_production
+    username: badminton_league
+    password: <%= ENV["BADMINTON_LEAGUE_DATABASE_PASSWORD"] %>
+  
