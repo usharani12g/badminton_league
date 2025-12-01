@@ -18,5 +18,9 @@ class Player < ApplicationRecord
     self.losses.count || 0
   end
 
+  def rank
+    self.total_matches > 0 ? ((self.wins_count.to_f / self.total_matches) * 100).round(1) : 'N/A'
+  end
+
 
 end

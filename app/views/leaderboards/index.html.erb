@@ -9,7 +9,7 @@
       <th>Name</th>
       <th>Wins</th>
       <th>Losses</th>
-      <th>Win %</th>
+      <th>Rank %</th>
     </tr>
   </thead>
   <tbody>
@@ -17,18 +17,12 @@
       <tr>
         <td><%= idx + 1 %></td>
         <td><%= p.name %></td>
-
-        <% wins = p.wins.count %>
-        <% losses = p.losses.count %>
-        <td><%= wins %></td>
-        <td><%= losses %></td>
-
+        <td><%= p.wins_count %></td>
+        <td><%= p.wins_count %></td>
         <td>
-          <% total = wins + losses %>
-          <%= total > 0 ? ((wins.to_f / total) * 100).round(1) : 'N/A' %>
+          <%= p.rank %>
         </td>
       </tr>
     <% end %>
-
   </tbody>
 </table>
