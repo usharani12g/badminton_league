@@ -39,9 +39,6 @@ class MatchesController < ApplicationController
 
   def destroy
     @match = Match.find(params[:id])
-
-    Player.decrement_counter(:wins, @match.winner_id)
-    Player.decrement_counter(:losses, @match.loser_id)
     @match.destroy
     redirect_to matches_path, notice: 'Match removed'
   end

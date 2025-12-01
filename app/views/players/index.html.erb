@@ -16,7 +16,7 @@
     <% @players.each do |p| %>
       <tr>
         <td><%= link_to p.name, player_path(p) %></td>
-        <td><%= p.wins.count || 0 %></td>
+        <td><%= p.winns_count || 0 %></td>
         <td><%= p.losses.count || 0 %></td>
         <td><%= link_to 'Edit', edit_player_path(p) %></td>
         <td><%= button_to 'Delete', player_path(p), method: :delete, data: { confirm: 'Are you sure?' } %></td>
