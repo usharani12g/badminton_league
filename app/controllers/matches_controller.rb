@@ -24,14 +24,10 @@ class MatchesController < ApplicationController
 
     ActiveRecord::Base.transaction do
       if @match.save
-        # success: redirect (Turbo accepts redirects)
         redirect_to matches_path, notice: 'Match recorded'
       else
-        # failure: render the form again with 422 so Turbo will accept it
         @players = Player.order(:name)
         render :new, status: :unprocessable_entity
-        # no need to raise rollback here — returning after render is fine
-        raise ActiveRecord::Rollback
       end
     end
   end
